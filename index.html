@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perjalanan Kemerdekaan - Maybank Makassar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Teko:wght@700&family=Poppins:wght@400;700;900&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="icon"
+      href="https://www.maybank.co.id/favicon.ico"
+      type="image/x-icon" />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      /* Menggunakan unit s-vh (small viewport height) untuk mengatasi bar browser di mobile */
+      .h-screen-custom {
+        height: 100vh;
+        height: 100svh;
+      }
+      section {
+        height: 100vh;
+        height: 100svh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        color: white;
+        overflow: hidden;
+        padding: 1.5rem; /* Padding diperbesar untuk memberi ruang aman */
+      }
+      .section-content {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+        z-index: 10;
+      }
+      section.is-visible .section-content {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #sec1 {
+        background-color: #000;
+      }
+      #sec2 {
+        background-color: #000;
+      }
+      #sec3 {
+        background: linear-gradient(to bottom, #e4032e 50%, #ffffff 50%);
+      }
+      #sec4,
+      #sec5 {
+        background: linear-gradient(to bottom, #d60029, #fa113e);
+        position: relative;
+      }
+
+      /* Animasi Mesin Ketik */
+      .typewriter h1 {
+        display: inline-block;
+        overflow: hidden;
+        border-right: 0.15em solid #ffc72c;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: 0.05em;
+        animation: typing 3.5s steps(40, end) forwards,
+          blink-caret 0.75s step-end infinite;
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #ffc72c;
+        }
+      }
+
+      /* Partikel Api & Confetti (Tidak ada perubahan) */
+      .fire-particle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #ffc72c;
+        border-radius: 50%;
+        bottom: -20px;
+        opacity: 0;
+        animation: rise 5s infinite;
+      }
+      @keyframes rise {
+        to {
+          transform: translateY(-100vh);
+          opacity: 1;
+        }
+      }
+      .confetti {
+        position: absolute;
+        width: 8px;
+        height: 16px;
+        background: white;
+        top: -20px;
+        opacity: 0;
+        animation: fall 4s infinite linear;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="sec1">
+      <div class="section-content max-w-4xl w-full">
+        <img
+          src="images/maybank.png"
+          class="h-20 mx-auto mb-4"
+          alt="Maybank Logo" />
+        <div class="typewriter">
+          <h1 class="text-xl sm:text-2xl md:text-4xl">
+            Semuanya berawal dari sebuah mimpi...
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec2">
+      <div id="fire-container"></div>
+      <div class="section-content max-w-4xl">
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold">
+          ...dinyalakan oleh
+          <span class="text-yellow-400">api perjuangan</span> yang tak kunjung
+          padam.
+        </h2>
+      </div>
+    </section>
+
+    <section id="sec3">
+      <div
+        class="section-content text-slate-900 bg-white/50 backdrop-blur-sm p-4 rounded-lg">
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold">
+          Melahirkan satu warna, satu bangsa.
+        </h2>
+      </div>
+    </section>
+
+    <section id="sec4">
+      <div id="confetti-container"></div>
+      <div class="section-content max-w-4xl">
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold drop-shadow-lg">
+          Dan kini, 80 tahun kemudian,<br />kita rayakan dengan penuh
+          <span class="text-yellow-300">semarak!</span>
+        </h2>
+      </div>
+    </section>
+
+    <section id="sec5">
+      <div class="section-content w-full max-w-3xl mx-auto">
+        <div
+          class="bg-black/20 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20">
+          <p class="font-bold text-yellow-400 tracking-widest text-sm">
+            MAYBANK MAKASSAR MEMPERSEMBAHKAN
+          </p>
+          <p class="mt-4 text-base md:text-lg">Coming Soon: 16 Agustus 2025</p>
+          <h1 class="font-bold text-2xl md:text-4xl text-white my-2">
+            PUNCAK PERAYAAN KEMERDEKAAN RI KE-80
+          </h1>
+          <div
+            id="countdown"
+            class="flex justify-center flex-wrap gap-2 md:space-x-4 mt-6 text-black">
+            <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]">
+              <div id="days" class="text-3xl md:text-5xl font-black">00</div>
+              <div class="text-xs">Hari</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]">
+              <div id="hours" class="text-3xl md:text-5xl font-black">00</div>
+              <div class="text-xs">Jam</div>
+            </div>
+            <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]">
+              <div id="minutes" class="text-3xl md:text-5xl font-black">00</div>
+              <div class="text-xs">Menit</div>
+            </div>
+            <div
+              class="bg-yellow-400 p-3 rounded-lg min-w-[70px] md:min-w-[100px]">
+              <div id="seconds" class="text-3xl md:text-5xl font-black">00</div>
+              <div class="text-xs">Detik</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Intersection Observer (Tidak ada perubahan)
+      const sections = document.querySelectorAll("section");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        { threshold: 0.3 }
+      ); // Threshold diubah sedikit untuk memicu lebih awal
+      sections.forEach((section) => observer.observe(section));
+
+      // Animasi partikel (Tidak ada perubahan)
+      const fireContainer = document.getElementById("fire-container");
+      if (fireContainer) {
+        for (let i = 0; i < 30; i++) {
+          const p = document.createElement("div");
+          p.className = "fire-particle";
+          p.style.left = `${Math.random() * 100}%`;
+          p.style.animationDelay = `${Math.random() * 5}s`;
+          fireContainer.appendChild(p);
+        }
+      }
+      const confettiContainer = document.getElementById("confetti-container");
+      if (confettiContainer) {
+        for (let i = 0; i < 50; i++) {
+          const c = document.createElement("div");
+          c.className = "confetti";
+          c.style.left = `${Math.random() * 100}%`;
+          c.style.animationDelay = `${Math.random() * 4}s`;
+          c.style.backgroundColor = Math.random() > 0.5 ? "#FFC72C" : "white";
+          confettiContainer.appendChild(c);
+        }
+      }
+
+      // Countdown Timer (Tidak ada perubahan)
+      const countDownDate = new Date("Aug 17, 2025 00:00:00").getTime();
+      const daysEl = document.getElementById("days"),
+        hoursEl = document.getElementById("hours"),
+        minutesEl = document.getElementById("minutes"),
+        secondsEl = document.getElementById("seconds");
+      const countdownEl = document.getElementById("countdown");
+      const interval = setInterval(() => {
+        const distance = countDownDate - new Date().getTime();
+        if (distance < 0) {
+          clearInterval(interval);
+          if (countdownEl)
+            countdownEl.innerHTML =
+              "<h2 class='text-2xl text-white font-bold p-4'>SELAMAT HARI KEMERDEKAAN!</h2>";
+          return;
+        }
+        if (daysEl)
+          daysEl.innerText = String(Math.floor(distance / 86400000)).padStart(
+            2,
+            "0"
+          );
+        if (hoursEl)
+          hoursEl.innerText = String(
+            Math.floor((distance % 86400000) / 3600000)
+          ).padStart(2, "0");
+        if (minutesEl)
+          minutesEl.innerText = String(
+            Math.floor((distance % 3600000) / 60000)
+          ).padStart(2, "0");
+        if (secondsEl)
+          secondsEl.innerText = String(
+            Math.floor((distance % 60000) / 1000)
+          ).padStart(2, "0");
+      }, 1000);
+    </script>
+  </body>
+</html>
