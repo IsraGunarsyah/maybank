@@ -18,7 +18,6 @@
       body {
         font-family: "Poppins", sans-serif;
       }
-      /* Menggunakan unit s-vh (small viewport height) untuk mengatasi bar browser di mobile */
       .h-screen-custom {
         height: 100vh;
         height: 100svh;
@@ -33,7 +32,7 @@
         position: relative;
         color: white;
         overflow: hidden;
-        padding: 1.5rem; /* Padding diperbesar untuk memberi ruang aman */
+        padding: 1.5rem;
       }
       .section-content {
         opacity: 0;
@@ -60,36 +59,23 @@
         position: relative;
       }
 
-      /* Animasi Mesin Ketik */
-      .typewriter h1 {
-        display: inline-block;
-        overflow: hidden;
-        border-right: 0.15em solid #ffc72c;
-        white-space: nowrap;
-        margin: 0 auto;
-        letter-spacing: 0.05em;
-        animation: typing 3.5s steps(40, end) forwards,
-          blink-caret 0.75s step-end infinite;
+      /* PERBAIKAN: Menghapus CSS typewriter lama, diganti kursor blinking */
+      .blinking-cursor {
+        color: #ffc72c;
+        font-weight: bold;
+        animation: blink 1s step-end infinite;
       }
-      @keyframes typing {
-        from {
-          width: 0;
-        }
-        to {
-          width: 100%;
-        }
-      }
-      @keyframes blink-caret {
+      @keyframes blink {
         from,
         to {
-          border-color: transparent;
+          opacity: 1;
         }
         50% {
-          border-color: #ffc72c;
+          opacity: 0;
         }
       }
 
-      /* Partikel Api & Confetti (Tidak ada perubahan) */
+      /* Partikel Api & Confetti */
       .fire-particle {
         position: absolute;
         width: 10px;
@@ -128,12 +114,14 @@
       <div class="section-content max-w-4xl w-full">
         <img
           src="maybank.png"
-          class="h-20 mx-auto mb-4"
+          class="h-10 mx-auto mb-6"
           alt="Maybank Logo" />
-        <div class="typewriter">
-          <h1 class="text-xl sm:text-2xl md:text-2xl">
-            Semuanya berawal dari sebuah mimpi...
-          </h1>
+
+        <div class="min-h-[100px] sm:min-h-[50px]">
+          <h1
+            id="typewriter-text"
+            class="text-2xl sm:text-3xl md:text-4xl text-white font-semibold"
+            data-text="Semuanya berawal dari sebuah mimpi..."></h1>
         </div>
       </div>
     </section>
@@ -205,21 +193,53 @@
     </section>
 
     <script>
-      // Intersection Observer (Tidak ada perubahan)
+      // --- PERBAIKAN FINAL: FUNGSI TYPEWRITER BARU DENGAN JAVASCRIPT ---
+      function startTypewriter(element) {
+        const text = element.getAttribute("data-text");
+        let i = 0;
+        element.innerHTML = ""; // Kosongkan teks awal
+
+        // Tambahkan kursor
+        const cursor = document.createElement("span");
+        cursor.className = "blinking-cursor";
+        cursor.textContent = "|";
+        element.parentNode.appendChild(cursor);
+
+        const typing = setInterval(() => {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(typing);
+            // Sembunyikan kursor setelah selesai
+            cursor.style.display = "none";
+          }
+        }, 100); // Kecepatan mengetik dalam milidetik
+      }
+
+      // Intersection Observer untuk animasi saat scroll
       const sections = document.querySelectorAll("section");
+      const typewriterEl = document.getElementById("typewriter-text");
+      let typewriterStarted = false;
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("is-visible");
+              // Jalankan typewriter hanya sekali saat section 1 terlihat
+              if (entry.target.id === "sec1" && !typewriterStarted) {
+                startTypewriter(typewriterEl);
+                typewriterStarted = true;
+              }
             }
           });
         },
-        { threshold: 0.3 }
-      ); // Threshold diubah sedikit untuk memicu lebih awal
+        { threshold: 0.5 }
+      );
       sections.forEach((section) => observer.observe(section));
 
-      // Animasi partikel (Tidak ada perubahan)
+      // Animasi partikel
       const fireContainer = document.getElementById("fire-container");
       if (fireContainer) {
         for (let i = 0; i < 30; i++) {
@@ -242,7 +262,7 @@
         }
       }
 
-      // Countdown Timer (Tidak ada perubahan)
+      // Countdown Timer
       const countDownDate = new Date("Aug 17, 2025 00:00:00").getTime();
       const daysEl = document.getElementById("days"),
         hoursEl = document.getElementById("hours"),
@@ -279,5 +299,3 @@
     </script>
   </body>
 </html>
-
-
