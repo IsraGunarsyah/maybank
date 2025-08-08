@@ -15,363 +15,194 @@
       href="https://www.maybank.co.id/favicon.ico"
       type="image/x-icon" />
     <style>
-      body {
-        font-family: "Poppins", sans-serif;
-      }
-      .h-screen-custom {
-        height: 100vh;
-        height: 100svh;
-      }
+      body { font-family: "Poppins", sans-serif; background-color: #000; }
+      #main-content { display: none; /* Konten utama disembunyikan awalnya */ }
+      .h-screen-custom { height: 100vh; height: 100svh; }
       section {
-        height: 100vh;
-        height: 100svh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        position: relative;
-        color: white;
-        overflow: hidden;
-        padding: 1.5rem;
+        height: 100vh; height: 100svh;
+        display: flex; justify-content: center; align-items: center;
+        text-align: center; position: relative; color: white;
+        overflow: hidden; padding: 1.5rem;
       }
       .section-content {
-        opacity: 0;
-        transform: translateY(30px);
+        opacity: 0; transform: translateY(30px);
         transition: opacity 1s ease-out, transform 1s ease-out;
         z-index: 10;
       }
-      section.is-visible .section-content {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      #sec1 {
-        background-color: #000;
-      }
-      #sec2 {
-        background-color: #000;
-      }
-      #sec3 {
-        background: linear-gradient(to bottom, #e4032e 50%, #ffffff 50%);
-      }
-      #sec4,
-      #sec5 {
-        background: linear-gradient(to bottom, #d60029, #fa113e);
-        position: relative;
-      }
+      section.is-visible .section-content { opacity: 1; transform: translateY(0); }
+      #sec1 { background-color: #000; }
+      #sec2 { background-color: #000; }
+      #sec3 { background: linear-gradient(to bottom, #e4032e 50%, #ffffff 50%); }
+      #sec4, #sec5 { background: linear-gradient(to bottom, #d60029, #fa113e); position: relative; }
 
-      .blinking-cursor {
-        color: #ffc72c;
-        font-weight: bold;
-        animation: blink 1s step-end infinite;
-      }
-      @keyframes blink {
-        from,
-        to {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
-        }
-      }
+      .blinking-cursor { color: #ffc72c; font-weight: bold; animation: blink 1s step-end infinite; }
+      @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
 
-      .fire-particle {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: #ffc72c;
-        border-radius: 50%;
-        bottom: -20px;
-        opacity: 0;
-        animation: rise 5s infinite;
-      }
-      @keyframes rise {
-        to {
-          transform: translateY(-100vh);
-          opacity: 1;
-        }
-      }
-      .confetti {
-        position: absolute;
-        width: 8px;
-        height: 16px;
-        background: white;
-        top: -20px;
-        opacity: 0;
-        animation: fall 4s infinite linear;
-      }
-      @keyframes fall {
-        to {
-          transform: translateY(100vh) rotate(360deg);
-          opacity: 1;
-        }
-      }
-
-      @keyframes bounce {
-        0%,
-        20%,
-        50%,
-        80%,
-        100% {
-          transform: translateY(0);
-        }
-        40% {
-          transform: translateY(-15px);
-        }
-        60% {
-          transform: translateY(-7px);
-        }
-      }
-      .animate-bounce-slow {
-        animation: bounce 2.5s infinite;
-      }
+      .fire-particle { position: absolute; width: 10px; height: 10px; background: #ffc72c; border-radius: 50%; bottom: -20px; opacity: 0; animation: rise 5s infinite; }
+      @keyframes rise { to { transform: translateY(-100vh); opacity: 1; } }
+      .confetti { position: absolute; width: 8px; height: 16px; background: white; top: -20px; opacity: 0; animation: fall 4s infinite linear; }
+      @keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 1; } }
+      
+      @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-7px); } }
+      .animate-bounce-slow { animation: bounce 2.5s infinite; }
     </style>
   </head>
   <body>
-    <section id="sec1">
-      <div class="section-content max-w-4xl w-full">
-        <img src="maybank.png" class="h-10 mx-auto mb-6" alt="Maybank Logo" />
+    <div id="splash-screen" class="h-screen-custom flex flex-col justify-center items-center text-center p-6 bg-black transition-opacity duration-1000">
+        <img src="https://www.maybank.co.id/assets/img/logo-maybank-yellow.png" class="h-12 mb-8" alt="Maybank Logo">
+        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Perayaan Kemerdekaan RI ke-80</h1>
+        <p class="text-white/80 mb-8">Pengalaman ini menggunakan musik. Siapkan diri Anda.</p>
+        <button id="enter-button" class="bg-yellow-400 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-300 transition-all transform hover:scale-105">
+            Mulai Perjalanan
+        </button>
+    </div>
 
-        <div
-          class="min-h-[120px] sm:min-h-[100px] flex justify-center items-center">
-          <h1
-            id="typewriter-text"
-            class="text-xl sm:text-2xl md:text-3xl text-white font-semibold"
-            data-text="“Let’s make this Independence Day,\nthe most unforgettable one — the Maybank way!”"></h1>
-        </div>
-      </div>
-      <div
-        id="scroll-indicator"
-        class="absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500">
-        <div class="animate-bounce-slow flex flex-col items-center">
-          <span class="text-xs uppercase tracking-widest text-white/70"
-            >Scroll</span
-          >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 text-white/70"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <section id="sec2">
-      <div id="fire-container"></div>
-      <div class="section-content max-w-4xl">
-        <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold">
-          ...dinyalakan oleh
-          <span class="text-yellow-400">api perjuangan</span> yang tak kunjung
-          padam.
-        </h2>
-      </div>
-    </section>
-
-    <section id="sec3">
-      <div
-        class="section-content text-slate-900 bg-white/50 backdrop-blur-sm p-4 rounded-lg">
-        <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold">
-          Melahirkan satu warna, satu bangsa.
-        </h2>
-      </div>
-    </section>
-
-    <section id="sec4">
-      <div id="confetti-container"></div>
-      <div class="section-content max-w-4xl">
-        <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold drop-shadow-lg">
-          Dan kini, 80 tahun kemudian,<br />kita rayakan dengan penuh
-          <span class="text-yellow-300">semarak!</span>
-        </h2>
-      </div>
-    </section>
-
-    <section id="sec5">
-      <div class="section-content w-full max-w-3xl mx-auto">
-        <div
-          class="bg-black/20 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20">
-          <p class="font-bold text-yellow-400 tracking-widest text-sm">
-            MAYBANK MAKASSAR MEMPERSEMBAHKAN
-          </p>
-          <p class="mt-4 text-base md:text-lg">Coming Soon: 16 Agustus 2025</p>
-          <h1 class="font-bold text-2xl md:text-4xl text-white my-2">
-            PUNCAK PERAYAAN KEMERDEKAAN RI KE-80
-          </h1>
-          <div
-            id="countdown"
-            class="flex justify-center flex-wrap gap-2 md:space-x-4 mt-6 text-black">
-            <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]">
-              <div id="days" class="text-3xl md:text-5xl font-black">00</div>
-              <div class="text-xs">Hari</div>
-            </div>
-            <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]">
-              <div id="hours" class="text-3xl md:text-5xl font-black">00</div>
-              <div class="text-xs">Jam</div>
-            </div>
-            <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]">
-              <div id="minutes" class="text-3xl md:text-5xl font-black">00</div>
-              <div class="text-xs">Menit</div>
-            </div>
-            <div
-              class="bg-yellow-400 p-3 rounded-lg min-w-[70px] md:min-w-[100px]">
-              <div id="seconds" class="text-3xl md:text-5xl font-black">00</div>
-              <div class="text-xs">Detik</div>
+    <div id="main-content">
+        <section id="sec1">
+          <div class="section-content max-w-4xl w-full">
+            <img src="https://www.maybank.co.id/assets/img/logo-maybank-yellow.png" class="h-10 mx-auto mb-6" alt="Maybank Logo" />
+            <div class="min-h-[120px] sm:min-h-[100px] flex justify-center items-center">
+              <h1 id="typewriter-text" class="text-xl sm:text-2xl md:text-3xl text-white font-semibold"
+                data-text="✨“Let’s make this Independence Day,\nthe most unforgettable one — the Maybank way!”"></h1>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+          <div id="scroll-indicator" class="absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500">
+              <div class="animate-bounce-slow flex flex-col items-center">
+                  <span class="text-xs uppercase tracking-widest text-white/70">Scroll</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+              </div>
+          </div>
+        </section>
 
+        <section id="sec2">
+          <div id="fire-container"></div>
+          <div class="section-content max-w-4xl">
+            <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold">...dinyalakan oleh <span class="text-yellow-400">api perjuangan</span> yang tak kunjung padam.</h2>
+          </div>
+        </section>
+
+        <section id="sec3">
+          <div class="section-content text-slate-900 bg-white/50 backdrop-blur-sm p-4 rounded-lg">
+            <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold">Melahirkan satu warna, satu bangsa.</h2>
+          </div>
+        </section>
+
+        <section id="sec4">
+          <div id="confetti-container"></div>
+          <div class="section-content max-w-4xl">
+            <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold drop-shadow-lg">Dan kini, 80 tahun kemudian,<br />kita rayakan dengan penuh <span class="text-yellow-300">semarak!</span></h2>
+          </div>
+        </section>
+
+        <section id="sec5">
+          <div class="section-content w-full max-w-3xl mx-auto">
+            <div class="bg-black/20 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20">
+              <p class="font-bold text-yellow-400 tracking-widest text-sm">MAYBANK MAKASSAR MEMPERSEMBAHKAN</p>
+              <p class="mt-4 text-base md:text-lg">Coming Soon: 16 Agustus 2025</p>
+              <h1 class="font-bold text-2xl md:text-4xl text-white my-2">PUNCAK PERAYAAN KEMERDEKAAN RI KE-80</h1>
+              <div id="countdown" class="flex justify-center flex-wrap gap-2 md:space-x-4 mt-6 text-black">
+                <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]"><div id="days" class="text-3xl md:text-5xl font-black">00</div><div class="text-xs">Hari</div></div>
+                <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]"><div id="hours" class="text-3xl md:text-5xl font-black">00</div><div class="text-xs">Jam</div></div>
+                <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]"><div id="minutes" class="text-3xl md:text-5xl font-black">00</div><div class="text-xs">Menit</div></div>
+                <div class="bg-yellow-400 p-3 rounded-lg min-w-[70px] md:min-w-[100px]"><div id="seconds" class="text-3xl md:text-5xl font-black">00</div><div class="text-xs">Detik</div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </div>
+    
     <audio id="background-music" loop>
-      <source src="kemerdekaan.mp3" type="audio/mpeg" />
-      Browser Anda tidak mendukung elemen audio.
+        <source src="https://firebasestorage.googleapis.com/v0/b/digital-clipping/o/assets%2F Tanah%20Airku%20-%20Lagu%20Wajib%20Nasional%20(Instrumental).mp3?alt=media&token=e9e623a3-3b10-4e3f-8083-200a58579471" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
     </audio>
 
     <script>
-      // 1. FUNGSI TYPEWRITER (JAVASCRIPT)
+      // 1. LOGIKA LAYAR PEMBUKA & PEMUTAR MUSIK
+      const splashScreen = document.getElementById('splash-screen');
+      const mainContent = document.getElementById('main-content');
+      const enterButton = document.getElementById('enter-button');
+      const audioEl = document.getElementById('background-music');
+
+      enterButton.addEventListener('click', () => {
+          // Mainkan musik
+          audioEl.play();
+
+          // Hilangkan splash screen dengan animasi fade out
+          splashScreen.style.opacity = '0';
+          
+          // Setelah animasi selesai, sembunyikan splash screen dan tampilkan konten utama
+          setTimeout(() => {
+              splashScreen.style.display = 'none';
+              mainContent.style.display = 'block';
+          }, 1000); // 1000ms = 1s (sesuai durasi transisi di CSS)
+      });
+
+
+      // 2. FUNGSI TYPEWRITER (JAVASCRIPT)
       function startTypewriter(element) {
-        // Menggunakan \n sebagai penanda baris baru
-        const text = element.getAttribute("data-text").replace(/\\n/g, "<br>");
-        let i = 0;
-        let currentHTML = "";
-        element.innerHTML = "";
-
-        const cursor = document.createElement("span");
-        cursor.className = "blinking-cursor";
-        cursor.innerHTML = "|";
+        const text = element.getAttribute("data-text").replace(/\\n/g, '<br>');
+        let i = 0; let currentHTML = ''; element.innerHTML = ""; 
+        const cursor = document.createElement("span"); cursor.className = "blinking-cursor"; cursor.innerHTML = "|";
         element.parentNode.appendChild(cursor);
-
         const typing = setInterval(() => {
           if (i < text.length) {
-            // Cek apakah karakter berikutnya adalah tag <br>
-            if (text.substring(i, i + 4) === "<br>") {
-              currentHTML += "<br>";
-              i += 4;
-            } else {
-              currentHTML += text.charAt(i);
-              i++;
-            }
+            if (text.substring(i, i + 4) === '<br>') { currentHTML += '<br>'; i += 4; } 
+            else { currentHTML += text.charAt(i); i++; }
             element.innerHTML = currentHTML;
-          } else {
-            clearInterval(typing);
-            cursor.style.display = "none";
-          }
-        }, 80); // Kecepatan mengetik sedikit dipercepat
+          } else { clearInterval(typing); cursor.style.display = "none"; }
+        }, 80);
       }
-
-      // 2. LOGIKA INDIKATOR SCROLL
-      const scrollIndicator = document.getElementById("scroll-indicator");
+      
+      // 3. LOGIKA INDIKATOR SCROLL
+      const scrollIndicator = document.getElementById('scroll-indicator');
       if (scrollIndicator) {
-        window.addEventListener(
-          "scroll",
-          () => {
-            if (window.scrollY > 50) {
-              scrollIndicator.style.opacity = "0";
-            } else {
-              scrollIndicator.style.opacity = "1";
-            }
-          },
-          { passive: true }
-        );
+          window.addEventListener('scroll', () => {
+              if (window.scrollY > 50) { scrollIndicator.style.opacity = '0'; } 
+              else { scrollIndicator.style.opacity = '1'; }
+          }, { passive: true });
       }
 
-      // 3. OBSERVER UNTUK ANIMASI & BACKSOUND
+      // 4. OBSERVER UNTUK ANIMASI SAAT SCROLL
       const sections = document.querySelectorAll("section");
       const typewriterEl = document.getElementById("typewriter-text");
-      const audioEl = document.getElementById("background-music");
       let typewriterStarted = false;
-      let musicPlayed = false;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
+      const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("is-visible");
-              if (entry.target.id === "sec1") {
-                // Jalankan typewriter hanya sekali
-                if (!typewriterStarted) {
-                  startTypewriter(typewriterEl);
-                  typewriterStarted = true;
-                }
-                // Mainkan musik hanya sekali (setelah ada interaksi scroll)
-                if (!musicPlayed && audioEl) {
-                  audioEl.play().catch((error) => {
-                    console.log(
-                      "Autoplay musik diblokir oleh browser. Diperlukan interaksi pengguna."
-                    );
-                  });
-                  musicPlayed = true;
-                }
+              if (entry.target.id === "sec1" && !typewriterStarted) {
+                startTypewriter(typewriterEl);
+                typewriterStarted = true;
               }
             }
           });
-        },
-        { threshold: 0.5 }
+        }, { threshold: 0.5 }
       );
       sections.forEach((section) => observer.observe(section));
 
-      // 4. ANIMASI PARTIKEL (API & KONFETI)
+      // 5. ANIMASI PARTIKEL
       const fireContainer = document.getElementById("fire-container");
-      if (fireContainer) {
-        for (let i = 0; i < 30; i++) {
-          const p = document.createElement("div");
-          p.className = "fire-particle";
-          p.style.left = `${Math.random() * 100}%`;
-          p.style.animationDelay = `${Math.random() * 5}s`;
-          fireContainer.appendChild(p);
-        }
-      }
+      if (fireContainer) { for (let i = 0; i < 30; i++) { const p = document.createElement("div"); p.className = "fire-particle"; p.style.left = `${Math.random() * 100}%`; p.style.animationDelay = `${Math.random() * 5}s`; fireContainer.appendChild(p); } }
       const confettiContainer = document.getElementById("confetti-container");
-      if (confettiContainer) {
-        for (let i = 0; i < 50; i++) {
-          const c = document.createElement("div");
-          c.className = "confetti";
-          c.style.left = `${Math.random() * 100}%`;
-          c.style.animationDelay = `${Math.random() * 4}s`;
-          c.style.backgroundColor = Math.random() > 0.5 ? "#FFC72C" : "white";
-          confettiContainer.appendChild(c);
-        }
-      }
+      if(confettiContainer) { for (let i = 0; i < 50; i++) { const c = document.createElement("div"); c.className = "confetti"; c.style.left = `${Math.random() * 100}%`; c.style.animationDelay = `${Math.random() * 4}s`; c.style.backgroundColor = Math.random() > 0.5 ? '#FFC72C' : 'white'; confettiContainer.appendChild(c); } }
 
-      // 5. COUNTDOWN TIMER
+      // 6. COUNTDOWN TIMER
       const countDownDate = new Date("Aug 17, 2025 00:00:00").getTime();
-      const daysEl = document.getElementById("days"),
-        hoursEl = document.getElementById("hours"),
-        minutesEl = document.getElementById("minutes"),
-        secondsEl = document.getElementById("seconds");
+      const daysEl = document.getElementById("days"), hoursEl = document.getElementById("hours"), minutesEl = document.getElementById("minutes"), secondsEl = document.getElementById("seconds");
       const countdownEl = document.getElementById("countdown");
       const interval = setInterval(() => {
         const distance = countDownDate - new Date().getTime();
         if (distance < 0) {
           clearInterval(interval);
-          if (countdownEl)
-            countdownEl.innerHTML =
-              "<h2 class='text-2xl text-white font-bold p-4'>SELAMAT HARI KEMERDEKAAN!</h2>";
+          if (countdownEl) countdownEl.innerHTML = "<h2 class='text-2xl text-white font-bold p-4'>SELAMAT HARI KEMERDEKAAN!</h2>";
           return;
         }
-        if (daysEl)
-          daysEl.innerText = String(Math.floor(distance / 86400000)).padStart(
-            2,
-            "0"
-          );
-        if (hoursEl)
-          hoursEl.innerText = String(
-            Math.floor((distance % 86400000) / 3600000)
-          ).padStart(2, "0");
-        if (minutesEl)
-          minutesEl.innerText = String(
-            Math.floor((distance % 3600000) / 60000)
-          ).padStart(2, "0");
-        if (secondsEl)
-          secondsEl.innerText = String(
-            Math.floor((distance % 60000) / 1000)
-          ).padStart(2, "0");
+        if (daysEl) daysEl.innerText = String(Math.floor(distance / 86400000)).padStart(2,"0");
+        if (hoursEl) hoursEl.innerText = String(Math.floor((distance % 86400000) / 3600000)).padStart(2, "0");
+        if (minutesEl) minutesEl.innerText = String(Math.floor((distance % 3600000) / 60000)).padStart(2, "0");
+        if (secondsEl) secondsEl.innerText = String(Math.floor((distance % 60000) / 1000)).padStart(2, "0");
       }, 1000);
     </script>
   </body>
