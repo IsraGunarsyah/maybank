@@ -1,214 +1,411 @@
 <!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Perjalanan Kemerdekaan - Maybank Makassar</title>
+<html lang="id" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bionic Tiger 2026 - Workplace To Hearplace</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Teko:wght@700&family=Poppins:wght@400;700;900&display=swap"
-      rel="stylesheet" />
-    <link
-      rel="icon"
-      href="https:maybank.png"
-      type="image/x-icon" />
-    <style>
-      body { font-family: "Poppins", sans-serif; background-color: #000; }
-      #main-content { display: none; /* Konten utama disembunyikan awalnya */ }
-      .h-screen-custom { height: 100vh; height: 100svh; }
-      section {
-        height: 100vh; height: 100svh;
-        display: flex; justify-content: center; align-items: center;
-        text-align: center; position: relative; color: white;
-        overflow: hidden; padding: 1.5rem;
-      }
-      .section-content {
-        opacity: 0; transform: translateY(30px);
-        transition: opacity 1s ease-out, transform 1s ease-out;
-        z-index: 10;
-      }
-      section.is-visible .section-content { opacity: 1; transform: translateY(0); }
-      #sec1 { background-color: #000; }
-      #sec2 { background-color: #000; }
-      #sec3 { background: linear-gradient(to bottom, #e4032e 50%, #ffffff 50%); }
-      #sec4, #sec5 { background: linear-gradient(to bottom, #d60029, #fa113e); position: relative; }
-
-      .blinking-cursor { color: #ffc72c; font-weight: bold; animation: blink 1s step-end infinite; }
-      @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
-
-      .fire-particle { position: absolute; width: 10px; height: 10px; background: #ffc72c; border-radius: 50%; bottom: -20px; opacity: 0; animation: rise 5s infinite; }
-      @keyframes rise { to { transform: translateY(-100vh); opacity: 1; } }
-      .confetti { position: absolute; width: 8px; height: 16px; background: white; top: -20px; opacity: 0; animation: fall 4s infinite linear; }
-      @keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 1; } }
-      
-      @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-7px); } }
-      .animate-bounce-slow { animation: bounce 2.5s infinite; }
-    </style>
-  </head>
-  <body>
-    <div id="splash-screen" class="h-screen-custom flex flex-col justify-center items-center text-center p-6 bg-black transition-opacity duration-1000">
-        <img src="maybank.png" class="h-12 mb-8" alt="Maybank Logo">
-        <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Perayaan Kemerdekaan RI ke-80</h1>
-        <button id="enter-button" class="bg-yellow-400 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-300 transition-all transform hover:scale-105">
-            Mulai Perjalanan
-        </button>
-    </div>
-
-    <div id="main-content">
-        <section id="sec1">
-          <div class="section-content max-w-4xl w-full">
-            <img src="maybank.png" class="h-30 mx-auto mb-6" alt="Maybank Logo" />
-            <div class="min-h-[120px] sm:min-h-[100px] flex justify-center items-center">
-              <h1 id="typewriter-text" class="text-xl sm:text-2xl md:text-3xl text-white font-semibold"
-                data-text="Let’s make this Independence Day,\nthe most unforgettable one — the Maybank way!"></h1>
-            </div>
-          </div>
-          <div id="scroll-indicator" class="absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500">
-              <div class="animate-bounce-slow flex flex-col items-center">
-                  <span class="text-xs uppercase tracking-widest text-white/70">Scroll</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                  </svg>
-              </div>
-          </div>
-        </section>
-
-        <section id="sec2">
-          <div id="fire-container"></div>
-          <div class="section-content max-w-4xl">
-            <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold">...dinyalakan oleh <span class="text-yellow-400">api perjuangan</span> yang tak kunjung padam.</h2>
-          </div>
-        </section>
-
-        <section id="sec3">
-          <div class="section-content text-slate-900 bg-white/50 backdrop-blur-sm p-4 rounded-lg">
-            <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold">Melahirkan satu warna, satu bangsa.</h2>
-          </div>
-        </section>
-
-        <section id="sec4">
-          <div id="confetti-container"></div>
-          <div class="section-content max-w-4xl">
-            <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold drop-shadow-lg">Dan kini, 80 tahun kemudian,<br />kita rayakan dengan penuh <span class="text-yellow-300">semarak!</span></h2>
-          </div>
-        </section>
-
-        <section id="sec5">
-          <div class="section-content w-full max-w-3xl mx-auto">
-            <div class="bg-black/20 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20">
-              <p class="font-bold text-yellow-400 tracking-widest text-sm">MAYBANK MAKASSAR MEMPERSEMBAHKAN</p>
-              <p class="mt-4 text-base md:text-lg">Coming Soon: 16 Agustus 2025</p>
-              <h1 class="font-bold text-2xl md:text-4xl text-white my-2">PUNCAK PERAYAAN KEMERDEKAAN RI KE-80</h1>
-              <div id="countdown" class="flex justify-center flex-wrap gap-2 md:space-x-4 mt-6 text-black">
-                <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]"><div id="days" class="text-3xl md:text-5xl font-black">00</div><div class="text-xs">Hari</div></div>
-                <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]"><div id="hours" class="text-3xl md:text-5xl font-black">00</div><div class="text-xs">Jam</div></div>
-                <div class="bg-white p-3 rounded-lg min-w-[70px] md:min-w-[100px]"><div id="minutes" class="text-3xl md:text-5xl font-black">00</div><div class="text-xs">Menit</div></div>
-                <div class="bg-yellow-400 p-3 rounded-lg min-w-[70px] md:min-w-[100px]"><div id="seconds" class="text-3xl md:text-5xl font-black">00</div><div class="text-xs">Detik</div></div>
-              </div>
-            </div>
-          </div>
-        </section>
-    </div>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- AOS (Animate On Scroll) untuk animasi masuk saat scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <audio id="background-music" loop>
-        <source src="kemerdekaan.mp3" type="audio/mpeg">
-        Browser Anda tidak mendukung elemen audio.
-    </audio>
-
     <script>
-      // 1. LOGIKA LAYAR PEMBUKA & PEMUTAR MUSIK
-      const splashScreen = document.getElementById('splash-screen');
-      const mainContent = document.getElementById('main-content');
-      const enterButton = document.getElementById('enter-button');
-      const audioEl = document.getElementById('background-music');
-
-      enterButton.addEventListener('click', () => {
-          // Mainkan musik
-          audioEl.play();
-
-          // Hilangkan splash screen dengan animasi fade out
-          splashScreen.style.opacity = '0';
-          
-          // Setelah animasi selesai, sembunyikan splash screen dan tampilkan konten utama
-          setTimeout(() => {
-              splashScreen.style.display = 'none';
-              mainContent.style.display = 'block';
-          }, 1000); // 1000ms = 1s (sesuai durasi transisi di CSS)
-      });
-
-
-      // 2. FUNGSI TYPEWRITER (JAVASCRIPT)
-      function startTypewriter(element) {
-        const text = element.getAttribute("data-text").replace(/\\n/g, '<br>');
-        let i = 0; let currentHTML = ''; element.innerHTML = ""; 
-        const cursor = document.createElement("span"); cursor.className = "blinking-cursor"; cursor.innerHTML = "|";
-        element.parentNode.appendChild(cursor);
-        const typing = setInterval(() => {
-          if (i < text.length) {
-            if (text.substring(i, i + 4) === '<br>') { currentHTML += '<br>'; i += 4; } 
-            else { currentHTML += text.charAt(i); i++; }
-            element.innerHTML = currentHTML;
-          } else { clearInterval(typing); cursor.style.display = "none"; }
-        }, 80);
-      }
-      
-      // 3. LOGIKA INDIKATOR SCROLL
-      const scrollIndicator = document.getElementById('scroll-indicator');
-      if (scrollIndicator) {
-          window.addEventListener('scroll', () => {
-              if (window.scrollY > 50) { scrollIndicator.style.opacity = '0'; } 
-              else { scrollIndicator.style.opacity = '1'; }
-          }, { passive: true });
-      }
-
-      // 4. OBSERVER UNTUK ANIMASI SAAT SCROLL
-      const sections = document.querySelectorAll("section");
-      const typewriterEl = document.getElementById("typewriter-text");
-      let typewriterStarted = false;
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              if (entry.target.id === "sec1" && !typewriterStarted) {
-                startTypewriter(typewriterEl);
-                typewriterStarted = true;
-              }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cinematic: ['"Bebas Neue"', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        treasure: {
+                            light: '#ffd700',
+                            DEFAULT: '#ffb300',
+                            dark: '#cc8e00',
+                        },
+                        bionic: '#00f2fe' /* Warna cyan khas teknologi/bionic */
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'float-delayed': 'float 3s ease-in-out 1.5s infinite',
+                        'wobble-skew': 'wobble-skew 1s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        'wobble-skew': {
+                            '0%, 100%': { transform: 'translateX(0) skewX(0)' },
+                            '15%': { transform: 'translateX(-10px) skewX(-5deg)' },
+                            '30%': { transform: 'translateX(8px) skewX(4deg)' },
+                            '45%': { transform: 'translateX(-6px) skewX(-3deg)' },
+                            '60%': { transform: 'translateX(4px) skewX(2deg)' },
+                            '75%': { transform: 'translateX(-2px) skewX(-1deg)' },
+                        }
+                    }
+                }
             }
-          });
-        }, { threshold: 0.5 }
-      );
-      sections.forEach((section) => observer.observe(section));
-
-      // 5. ANIMASI PARTIKEL
-      const fireContainer = document.getElementById("fire-container");
-      if (fireContainer) { for (let i = 0; i < 30; i++) { const p = document.createElement("div"); p.className = "fire-particle"; p.style.left = `${Math.random() * 100}%`; p.style.animationDelay = `${Math.random() * 5}s`; fireContainer.appendChild(p); } }
-      const confettiContainer = document.getElementById("confetti-container");
-      if(confettiContainer) { for (let i = 0; i < 50; i++) { const c = document.createElement("div"); c.className = "confetti"; c.style.left = `${Math.random() * 100}%`; c.style.animationDelay = `${Math.random() * 4}s`; c.style.backgroundColor = Math.random() > 0.5 ? '#FFC72C' : 'white'; confettiContainer.appendChild(c); } }
-
-      // 6. COUNTDOWN TIMER
-      const countDownDate = new Date("Aug 17, 2025 00:00:00").getTime();
-      const daysEl = document.getElementById("days"), hoursEl = document.getElementById("hours"), minutesEl = document.getElementById("minutes"), secondsEl = document.getElementById("seconds");
-      const countdownEl = document.getElementById("countdown");
-      const interval = setInterval(() => {
-        const distance = countDownDate - new Date().getTime();
-        if (distance < 0) {
-          clearInterval(interval);
-          if (countdownEl) countdownEl.innerHTML = "<h2 class='text-2xl text-white font-bold p-4'>SELAMAT HARI KEMERDEKAAN!</h2>";
-          return;
         }
-        if (daysEl) daysEl.innerText = String(Math.floor(distance / 86400000)).padStart(2,"0");
-        if (hoursEl) hoursEl.innerText = String(Math.floor((distance % 86400000) / 3600000)).padStart(2, "0");
-        if (minutesEl) minutesEl.innerText = String(Math.floor((distance % 3600000) / 60000)).padStart(2, "0");
-        if (secondsEl) secondsEl.innerText = String(Math.floor((distance % 60000) / 1000)).padStart(2, "0");
-      }, 1000);
     </script>
-  </body>
+    <style>
+        /* Custom Styling & Animations */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(0, 242, 254, 0.5);
+        }
+        .glow-border:hover {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            border-color: #ffd700;
+        }
+        
+        /* 3D Tilt Effect on Hover */
+        .tilt-card {
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            transform-style: preserve-3d;
+        }
+        .tilt-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Movie Popcorn Animation */
+        @keyframes popcorn {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+            33% { transform: translate(10px, -20px) rotate(90deg); }
+            66% { transform: translate(-10px, -40px) rotate(180deg); opacity: 1; }
+            100% { transform: translate(0, -60px) rotate(270deg); opacity: 0; }
+        }
+        .animate-popcorn {
+            display: inline-block;
+            animation: popcorn 1s ease-out infinite;
+            opacity: 0;
+        }
+
+        /* Shine effect for Trophy */
+        .shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            100% { left: 250%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-white font-body overflow-x-hidden">
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen flex items-center justify-center text-center bg-fixed bg-center bg-cover overflow-hidden" 
+             style="background-image: linear-gradient(rgba(7, 10, 20, 0.8), rgba(17, 24, 39, 1)), url('https://images.unsplash.com/photo-1512070679279-8988d32161be?q=80&w=2070&auto=format&fit=crop');">
+        
+        <!-- Bionic Floating Particles (Lucu & Keren) -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute w-4 h-4 bg-bionic rounded-full animate-float top-1/4 left-1/4"></div>
+            <div class="absolute w-6 h-6 bg-treasure rounded-full animate-float-delayed top-1/3 right-1/4"></div>
+            <div class="absolute w-3 h-3 bg-white rounded-full animate-float top-3/4 left-1/2"></div>
+            <i class="fa-solid fa-film absolute text-gray-700 text-5xl animate-float-delayed bottom-1/4 right-10 opacity-50"></i>
+            <i class="fa-solid fa-robot absolute text-bionic text-4xl animate-float top-10 right-10 opacity-70"></i>
+        </div>
+
+        <div class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
+            <div class="text-2xl font-cinematic text-bionic tracking-widest animate-pulse-slow">Maybank Makassar</div>
+            <div class="text-sm uppercase tracking-widest border-2 border-treasure px-4 py-1 rounded-full text-treasure font-bold shadow-[0_0_10px_rgba(255,213,0,0.3)]">
+                <i class="fa-solid fa-clapperboard mr-2"></i>Movie Edition
+            </div>
+        </div>
+
+        <div class="z-10 px-4 mt-16" data-aos="zoom-in" data-aos-duration="1500">
+            <h2 class="text-3xl md:text-5xl font-cinematic text-gray-300 mb-2 tracking-widest uppercase">Bionic Tiger 2026 Presents</h2>
+            
+            <div class="relative inline-block">
+                <h1 class="text-7xl md:text-9xl font-cinematic text-transparent bg-clip-text bg-gradient-to-r from-bionic via-treasure-light to-treasure-dark mb-6 glow-text uppercase tracking-wider scale-110">
+                    Workplace<br>To Hearplace
+                </h1>
+                <!-- Lucu: Popcorn terbang di judul -->
+                <span class="absolute -top-10 -right-10 text-5xl animate-popcorn">🍿</span>
+                <span class="absolute -bottom-5 -left-10 text-5xl animate-popcorn" style="animation-delay: 0.5s">🍿</span>
+            </div>
+
+            <p class="text-lg md:text-2xl text-gray-200 max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+                Keluarkan <span class="text-treasure font-bold">Inner-Superhero</span> atau <span class="text-bionic font-bold">Villain</span> favoritmu! Jelajahi Makassar, temukan Harta Karun, dan ukir sejarah di panggung sinematik Bionic Tiger.
+            </p>
+            
+            <a href="#timer" class="inline-block bg-gradient-to-r from-bionic via-treasure to-treasure-dark text-gray-950 font-extrabold py-4 px-10 rounded-full hover:scale-110 transition-all duration-300 shadow-[0_0_20px_rgba(0,242,254,0.6)] group">
+                <i class="fa-solid fa-mask mr-2 group-hover:animate-wiggle"></i> Mulai Petualangan!
+            </a>
+        </div>
+        
+        <div class="absolute bottom-0 w-full h-40 bg-gradient-to-t from-gray-950 to-transparent"></div>
+    </section>
+
+    <!-- COUNTDOWN TIMER SECTION -->
+    <section id="timer" class="py-24 bg-gray-950 border-b border-gray-800 relative overflow-hidden">
+        <!-- Background lucu: Jejak kaki macan -->
+        <i class="fa-solid fa-paw absolute text-gray-800 text-9xl -bottom-10 -left-10 opacity-30 rotate-12"></i>
+        
+        <div class="container mx-auto px-4 text-center relative z-10" data-aos="fade-up">
+            <h3 class="text-4xl md:text-5xl font-cinematic text-bionic mb-3 tracking-widest uppercase glow-text">Kamera Siap... Rol Film Jalan!</h3>
+            <p class="text-xl text-gray-400 mb-12 max-w-lg mx-auto border-b border-gray-700 pb-4">Aksi dimulai dalam:</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 md:gap-10">
+                <!-- Timer Box -->
+                <div class="bg-gray-900 border-2 border-gray-700 hover:border-bionic p-8 rounded-2xl shadow-xl w-28 md:w-40 transition-all duration-300 hover:-translate-y-2 group glow-border">
+                    <span id="days" class="text-5xl md:text-7xl font-extrabold text-treasure-light block group-hover:scale-110 transition-transform">00</span>
+                    <span class="text-sm md:text-lg text-gray-400 uppercase tracking-wider mt-2 block font-semibold">Hari</span>
+                </div>
+                <div class="bg-gray-900 border-2 border-gray-700 hover:border-bionic p-8 rounded-2xl shadow-xl w-28 md:w-40 transition-all duration-300 hover:-translate-y-2 group glow-border">
+                    <span id="hours" class="text-5xl md:text-7xl font-extrabold text-white block group-hover:scale-110 transition-transform">00</span>
+                    <span class="text-sm md:text-lg text-gray-400 uppercase tracking-wider mt-2 block font-semibold">Jam</span>
+                </div>
+                <div class="bg-gray-900 border-2 border-gray-700 hover:border-bionic p-8 rounded-2xl shadow-xl w-28 md:w-40 transition-all duration-300 hover:-translate-y-2 group glow-border">
+                    <span id="minutes" class="text-5xl md:text-7xl font-extrabold text-white block group-hover:scale-110 transition-transform">00</span>
+                    <span class="text-sm md:text-lg text-gray-400 uppercase tracking-wider mt-2 block font-semibold">Menit</span>
+                </div>
+                <div class="bg-gray-900 border-2 border-gray-700 hover:border-bionic p-8 rounded-2xl shadow-xl w-28 md:w-40 transition-all duration-300 hover:-translate-y-2 group glow-border">
+                    <span id="seconds" class="text-5xl md:text-7xl font-extrabold text-bionic block group-hover:scale-110 transition-transform animate-pulse">00</span>
+                    <span class="text-sm md:text-lg text-gray-400 uppercase tracking-wider mt-2 block font-semibold">Detik</span>
+                </div>
+            </div>
+            <p class="mt-12 text-lg text-gray-500 font-mono">Lokasi Shot: <i class="fa-solid fa-location-dot text-red-500"></i> Malino Highland, 30-31 Mei 2026</p>
+        </div>
+    </section>
+
+    <!-- GAMES SECTION -->
+    <section class="py-24 bg-gray-900 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20" data-aos="fade-down">
+                <h3 class="text-5xl font-cinematic text-white tracking-widest uppercase">
+                    <i class="fa-solid fa-ticket text-treasure mr-3 animate-wobble-skew"></i>Mainkan Peranmu!
+                </h3>
+                <div class="w-32 h-1.5 bg-gradient-to-r from-bionic via-treasure to-bionic mx-auto mt-5 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                
+                <!-- Game 1 -->
+                <div class="bg-gray-950 border border-gray-800 p-8 rounded-3xl tilt-card glow-border group overflow-hidden relative" data-aos="flip-left">
+                    <div class="absolute -right-5 -top-5 text-8xl text-gray-800/50 group-hover:text-bionic/20 transition-colors">1</div>
+                    <i class="fa-solid fa-users-viewfinder text-5xl text-bionic mb-6 block transition-transform group-hover:scale-110 group-hover:rotate-6"></i>
+                    <h4 class="text-3xl font-bold mb-3 text-white">Misi: Team Building I</h4>
+                    <p class="text-gray-400 text-lg leading-relaxed">"The Fellowship". Satukan kekuatan berbeda karakter untuk memecahkan kode rahasia harta karun.</p>
+                </div>
+
+                <!-- Game 2 -->
+                <div class="bg-gray-950 border border-gray-800 p-8 rounded-3xl tilt-card glow-border group overflow-hidden relative" data-aos="flip-left" data-aos-delay="100">
+                    <div class="absolute -right-5 -top-5 text-8xl text-gray-800/50 group-hover:text-bionic/20 transition-colors">2</div>
+                    <i class="fa-solid fa-mountain-sun text-5xl text-bionic mb-6 block transition-transform group-hover:scale-110 group-hover:rotate-6"></i>
+                    <h4 class="text-3xl font-bold mb-3 text-white">Misi: Team Building II</h4>
+                    <p class="text-gray-400 text-lg leading-relaxed">"Mission Impossible". Hadapi rintangan fisik bionic yang membutuhkan ketangkasan dan kerjasama tim.</p>
+                </div>
+
+                <!-- Game 3 -->
+                <div class="bg-gray-950 border border-gray-800 p-8 rounded-3xl tilt-card glow-border group overflow-hidden relative" data-aos="flip-left" data-aos-delay="200">
+                    <div class="absolute -right-5 -top-5 text-8xl text-gray-800/50 group-hover:text-bionic/20 transition-colors">3</div>
+                    <i class="fa-solid fa-brain text-5xl text-bionic mb-6 block transition-transform group-hover:scale-110 group-hover:rotate-6"></i>
+                    <h4 class="text-3xl font-bold mb-3 text-white">Misi: Team Building III</h4>
+                    <p class="text-gray-400 text-lg leading-relaxed">"Inception". Ujian fokus dan komunikasi. Jangan biarkan ide tim lawan mengacaukan strategimu.</p>
+                </div>
+
+                <!-- Game 4 -->
+                <div class="bg-gray-950 border border-gray-800 p-8 rounded-3xl tilt-card glow-border group overflow-hidden relative md:col-span-2 lg:col-span-1" data-aos="flip-left" data-aos-delay="300">
+                    <div class="absolute -right-5 -top-5 text-8xl text-gray-800/50 group-hover:text-treasure/20 transition-colors">4</div>
+                    <i class="fa-solid fa-shoutout text-5xl text-treasure mb-6 block transition-transform group-hover:scale-120 group-hover:animate-pulse"></i>
+                    <h4 class="text-3xl font-bold mb-3 text-white">Yel Yel Terbaik</h4>
+                    <p class="text-gray-400 text-lg leading-relaxed">"Pitch Perfect". Paduan suara, teriakan perang, atau tarian ikonik. Buat juri terpukau dengan semangat membara!</p>
+                </div>
+
+                <!-- Game 5 -->
+                <div class="bg-gray-950 border border-gray-800 p-8 rounded-3xl tilt-card glow-border group overflow-hidden relative md:col-span-2 lg:col-span-2" data-aos="flip-left" data-aos-delay="400">
+                    <div class="absolute -right-5 -top-5 text-8xl text-gray-800/50 group-hover:text-treasure/20 transition-colors">5</div>
+                    <i class="fa-solid fa-jedi text-5xl text-treasure mb-6 block transition-transform group-hover:scale-110 group-hover:-rotate-6"></i>
+                    <h4 class="text-3xl font-bold mb-3 text-white">Performance Team (Bebas)</h4>
+                    <p class="text-gray-400 text-lg leading-relaxed">"The Oscars". Waktunya *Show Off*! Tampilkan drama singkat, tarian, atau aksi *stunt* sesuai tema karakter film tim kalian. Kreativitas tanpa batas!</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAMS SECTION -->
+    <section class="py-24 bg-gray-950 relative overflow-hidden">
+        <!-- Lucu: Mata naga mengawasi -->
+        <div class="absolute -right-20 top-1/4 text-[200px] text-gray-900 opacity-50 rotate-12 animate-pulse-slow">👁️</div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-5xl font-cinematic text-white tracking-widest uppercase">Casting Pemain Utama</h3>
+                <div class="w-32 h-1.5 bg-treasure mx-auto mt-5 rounded-full"></div>
+                <p class="mt-6 text-xl text-gray-400">Siapa yang akan memenangkan Piala Emas?</p>
+            </div>
+
+            <!-- Team Grid dengan animasi Bounce saat Hover -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                
+                <!-- Contoh Tim (Bisa diedit nanti) -->
+                <div class="bg-gray-900 p-6 rounded-2xl text-center border-2 border-gray-800 transition-all duration-300 hover:border-bionic hover:bg-gray-800 hover:animate-bounce-short group" data-aos="zoom-in">
+                    <div class="w-24 h-24 bg-gray-800 rounded-full mx-auto mb-4 flex items-center justify-center text-5xl group-hover:scale-110 transition-transform shadow-inner border border-gray-700">🦹‍♂️</div>
+                    <h5 class="font-bold text-xl text-white group-hover:text-bionic">Tim Joker's Squad</h5>
+                    <p class="text-gray-500 text-sm">Divisi IT</p>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-2xl text-center border-2 border-gray-800 transition-all duration-300 hover:border-bionic hover:bg-gray-800 hover:animate-bounce-short group" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-24 h-24 bg-gray-800 rounded-full mx-auto mb-4 flex items-center justify-center text-5xl group-hover:scale-110 transition-transform shadow-inner border border-gray-700">⚔️</div>
+                    <h5 class="font-bold text-xl text-white group-hover:text-bionic">Tim Wakanda Forever</h5>
+                    <p class="text-gray-500 text-sm">Divisi Sales</p>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-2xl text-center border-2 border-gray-800 transition-all duration-300 hover:border-bionic hover:bg-gray-800 hover:animate-bounce-short group" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-24 h-24 bg-gray-800 rounded-full mx-auto mb-4 flex items-center justify-center text-5xl group-hover:scale-110 transition-transform shadow-inner border border-gray-700">🪄</div>
+                    <h5 class="font-bold text-xl text-white group-hover:text-bionic">Tim Gryffindor</h5>
+                    <p class="text-gray-500 text-sm">Divisi Operasional</p>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-2xl text-center border-2 border-gray-800 transition-all duration-300 hover:border-bionic hover:bg-gray-800 hover:animate-bounce-short group" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="w-24 h-24 bg-gray-800 rounded-full mx-auto mb-4 flex items-center justify-center text-5xl group-hover:scale-110 transition-transform shadow-inner border border-gray-700">🕵️‍♀️</div>
+                    <h5 class="font-bold text-xl text-white group-hover:text-bionic">Tim Charlie's Angels</h5>
+                    <p class="text-gray-500 text-sm">Divisi HR</p>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <button class="bg-transparent border-2 border-bionic text-bionic font-bold py-3 px-8 rounded-full hover:bg-bionic hover:text-gray-950 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,242,254,0.5)]">
+                    <i class="fa-solid fa-list-ul mr-2"></i>Lihat Semua Tim (PDF)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRIZES (TREASURE) SECTION -->
+    <section class="py-28 bg-gray-900 relative overflow-hidden" 
+             style="background-image: linear-gradient(rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.98)), url('https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=2069&auto=format&fit=crop'); background-size: cover; background-attachment: fixed;">
+        
+        <!-- Lucu: Koin terbang -->
+        <div class="absolute inset-0 opacity-40 z-0">
+            <span class="absolute text-3xl animate-float top-20 left-1/4">💰</span>
+            <span class="absolute text-2xl animate-float-delayed top-40 right-1/3">🪙</span>
+            <span class="absolute text-4xl animate-float bottom-20 left-1/2">💰</span>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-20" data-aos="fade-down">
+                <h3 class="text-6xl font-cinematic text-treasure tracking-widest uppercase glow-text">Peti Harta Karun</h3>
+                <div class="w-32 h-1.5 bg-gradient-to-r from-treasure-light via-white to-treasure-dark mx-auto mt-5 rounded-full"></div>
+                <p class="mt-6 text-2xl text-gray-200">Hadiah Sinematik untuk Para Pemenang</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center items-end gap-6 max-w-6xl mx-auto">
+                
+                <!-- Juara 2 -->
+                <div class="bg-gray-800/80 backdrop-blur-sm border-2 border-gray-600 p-8 rounded-t-3xl w-full md:w-1/3 text-center order-2 md:order-1 transform hover:scale-105 transition-transform duration-300 hover:border-silver glow-border shine" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-medal text-6xl text-gray-400 mb-5 drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]"></i>
+                    <h4 class="text-3xl font-bold text-white mb-2 uppercase tracking-wide">Juara 2</h4>
+                    <p class="text-gray-400 mb-6 font-light">Silver Award Team</p>
+                    <div class="text-4xl font-extrabold text-gray-200 bg-gray-950 py-4 rounded-xl border border-gray-600 shadow-inner">Rp 2.000.000</div>
+                    <p class="text-gray-500 mt-2 text-sm">per team</p>
+                </div>
+
+                <!-- Juara 1 -->
+                <div class="bg-gradient-to-b from-treasure-dark/90 to-black/90 backdrop-blur-sm border-4 border-treasure p-12 rounded-t-3xl w-full md:w-2/5 text-center order-1 md:order-2 shadow-[0_0_50px_rgba(255,215,0,0.4)] z-10 transform hover:scale-105 transition-transform duration-300 relative shine" data-aos="fade-up">
+                    <!-- Lucu: Mahkota di atas juara 1 -->
+                    <span class="absolute -top-10 left-1/2 -translate-x-1/2 text-6xl animate-pulse">👑</span>
+                    
+                    <i class="fa-solid fa-trophy text-8xl text-yellow-300 mb-6 drop-shadow-[0_0_15px_rgba(255,215,0,0.8)] animate-float"></i>
+                    <h4 class="text-5xl font-cinematic text-white mb-2 uppercase tracking-widest glow-text">Juara 1</h4>
+                    <p class="text-treasure-light mb-8 font-semibold text-lg">Grand Champion "The Oscar"</p>
+                    <div class="text-5xl font-extrabold text-yellow-300 bg-black/70 py-5 rounded-2xl border-2 border-treasure-light glow-text shadow-2xl">Rp 3.000.000</div>
+                    <p class="text-treasure mt-2 text-sm font-bold">per team</p>
+                </div>
+
+                <!-- Juara 3 -->
+                <div class="bg-gray-800/80 backdrop-blur-sm border-2 border-orange-800 p-8 rounded-t-3xl w-full md:w-1/3 text-center order-3 md:order-3 transform hover:scale-105 transition-transform duration-300 hover:border-orange-600 glow-border shine" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-solid fa-award text-6xl text-orange-500 mb-5 drop-shadow-[0_0_5px_rgba(255,165,0,0.3)]"></i>
+                    <h4 class="text-3xl font-bold text-white mb-2 uppercase tracking-wide">Juara 3</h4>
+                    <p class="text-gray-400 mb-6 font-light">Bronze Award Team</p>
+                    <div class="text-4xl font-extrabold text-orange-400 bg-gray-950 py-4 rounded-xl border border-orange-800 shadow-inner">Rp 1.000.000</div>
+                    <p class="text-gray-500 mt-2 text-sm">per team</p>
+                </div>
+            </div>
+            
+            <p class="text-center mt-16 text-gray-500 font-italic">*Hadiah berupa uang tunai dan trofi sinematik Bionic Tiger.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t-2 border-gray-800 text-center relative overflow-hidden">
+        <!-- Lucu: Robot Maybank dadah -->
+        <div class="absolute bottom-0 right-5 text-6xl opacity-20 group-hover:opacity-100 transition-opacity animate-float">🤖👋</div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-3xl font-cinematic text-bionic mb-2 tracking-widest animate-pulse-slow">Bionic Tiger 2026</h2>
+            <p class="text-gray-400 text-lg mb-6 font-semibold uppercase tracking-wider">Maybank Makassar - Workplace To Hearplace</p>
+            
+            <div class="flex justify-center space-x-6 text-gray-500 mb-8">
+                <a href="#" class="hover:text-treasure transition-all hover:scale-120 hover:rotate-6"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                <a href="#" class="hover:text-bionic transition-all hover:scale-120 hover:-rotate-6"><i class="fa-brands fa-youtube text-2xl"></i></a>
+                <a href="#" class="hover:text-white transition-all hover:scale-120"><i class="fa-brands fa-tiktok text-2xl"></i></a>
+            </div>
+            
+            <div class="w-20 h-0.5 bg-gray-800 mx-auto mb-6"></div>
+            <p class="text-gray-600 text-sm">&copy; 2026 Maybank Makassar. This event is fictional for design purposes.</p>
+            <p class="text-gray-700 text-xs mt-2">Powered by Tailwind CSS & Movie Magic.</p>
+        </div>
+    </footer>
+
+    <!-- JS SCRIPTS -->
+    <!-- AOS untuk animasi scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inisialisasi AOS
+        AOS.init({
+            duration: 1000,
+            once: true, // Animasi hanya berjalan sekali saat scroll down
+            mirror: false
+        });
+
+        // --- SCRIPT FOR COUNTDOWN TIMER ---
+        // Set tanggal tujuan (30 Mei 2026 08:00:00 WITA)
+        // Karena JavaScript menggunakan UTC, kita sesuaikan untuk Makassar (WITA = UTC+8)
+        const countDownDate = new Date("May 30, 2026 08:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+            
+            // Jika waktu habis
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = `
+                    <div class="text-center py-10 animation-pulse" data-aos="zoom-in">
+                        <h3 class="text-6xl font-cinematic text-treasure glow-text uppercase">Showtime!</h3>
+                        <p class="text-2xl text-white mt-4">Acara Bionic Tiger 2026 Sedang Berlangsung.</p>
+                    </div>
+                `;
+            }
+        }, 1000);
+    </script>
+</body>
 </html>
-
-
-
-
-
-
